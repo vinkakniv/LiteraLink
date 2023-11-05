@@ -5,7 +5,7 @@
 
 # Assignment 7
 
-## Apa perbedaan utama antara `StatelessWidget` dan `StatefulWidget` dalam konteks pengembangan aplikasi Flutter?
+### Apa perbedaan utama antara `StatelessWidget` dan `StatefulWidget` dalam konteks pengembangan aplikasi Flutter?
 1. `StatelessWidget`:
    - Widget ini tidak berubah sendiri—tampilannya tetap sampai diperbarui oleh widget lain.
    - Digunakan untuk elemen UI yang tidak perlu memperbarui tampilan berdasarkan interaksi pengguna.
@@ -20,7 +20,7 @@ Ringkasnya:
    - `StatelessWidget`: Untuk UI yang tidak perlu berubah—cepat dan efisien.
    - `StatefulWidget`: Untuk UI yang dinamis dan interaktif—fleksibel dan responsif terhadap perubahan.
 
-## Sebutkan seluruh widget yang kamu gunakan untuk menyelesaikan tugas ini dan jelaskan fungsinya masing-masing.
+### Sebutkan seluruh widget yang kamu gunakan untuk menyelesaikan tugas ini dan jelaskan fungsinya masing-masing.
 Berikut ringkasan fungsional dari widget-widget yang saya gunakan:
 1. `main.dart`:
   - `MaterialApp`: Root widget untuk mengatur tema dan navigasi.
@@ -42,7 +42,7 @@ Berikut ringkasan fungsional dari widget-widget yang saya gunakan:
 Setiap widget di atas berperan dalam menyusun tampilan dan interaksi dalam aplikasi.
 
 
-## Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step.
+### Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step.
 1. Pertama, memulai dengan membuat proyek Flutter baru dengan nama `literalink` menggunakan perintah:
     ```
     flutter create literalink
