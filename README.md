@@ -22,7 +22,6 @@ Ringkasnya:
 
 ### Sebutkan seluruh widget yang kamu gunakan untuk menyelesaikan tugas ini dan jelaskan fungsinya masing-masing.
 Berikut ringkasan fungsional dari widget-widget yang saya gunakan:
-1. `main.dart`:
   - `MaterialApp`: Root widget untuk mengatur tema dan navigasi.
   - `ThemeData`: Mendefinisikan tema global.
   - `Scaffold`: Struktur dasar halaman dengan AppBar dan Body.
@@ -33,7 +32,6 @@ Berikut ringkasan fungsional dari widget-widget yang saya gunakan:
   - `Text`: Menampilkan teks.
   - `GridView`: Menampilkan item dalam grid dua dimensi.
   - `ShopCard`: Widget kustom untuk menampilkan item.
-2. `menu.dart`:
   - `Icon`: Menampilkan ikon.
   - `Material`: Memberikan efek visual Material Design.
   - `InkWell`: Efek visual dan gesture saat ditekan.
