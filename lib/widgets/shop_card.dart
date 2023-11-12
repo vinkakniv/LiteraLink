@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:literalink/screens/shoplist_form.dart';
+import 'package:literalink/widgets/left_drawer.dart';
 
 class ShopItem {
   final String name;
@@ -8,6 +10,7 @@ class ShopItem {
   ShopItem(this.name, this.icon, this.color);
 }
 
+
 class MyHomePage extends StatelessWidget {
   MyHomePage({Key? key}) : super(key: key);
 
@@ -16,6 +19,7 @@ class MyHomePage extends StatelessWidget {
     ShopItem("Add New Title", Icons.post_add_outlined, const Color(0xFFFf7043)),
     ShopItem("Logout", Icons.logout, const Color(0xFFE53935)),
   ];
+
 
   // This widget is the home page of your application. It is stateful, meaning
   // that it has a State object (defined below) that contains fields that affect
@@ -33,12 +37,13 @@ class MyHomePage extends StatelessWidget {
         title: const Text(
           '📌Archive of MY Own',
           style: TextStyle(
-            fontStyle: FontStyle.italic, // Set the fontStyle here
-            color:  Color(0xFFEEEEEE),
+              fontStyle: FontStyle.italic, // Set the fontStyle here
+              color:  Color(0xFFEEEEEE),
               fontFamily: 'Segoe UI'
           ),
         ),
       ),
+      drawer: const LeftDrawer(),
       body: SingleChildScrollView(
         // Widget wrapper yang dapat discroll
         child: Padding(
@@ -53,9 +58,9 @@ class MyHomePage extends StatelessWidget {
                   'LiteraLink🔖', // Text yang menandakan toko
                   textAlign: TextAlign.center,
                   style: TextStyle(
-                    fontSize: 35,
-                    fontWeight: FontWeight.bold,
-                    color: Color(0xFFB71C1C),
+                      fontSize: 35,
+                      fontWeight: FontWeight.bold,
+                      color: Color(0xFFB71C1C),
                       fontFamily: 'Segoe UI'
                   ),
                 ),
@@ -99,6 +104,10 @@ class ShopCard extends StatelessWidget {
             ..hideCurrentSnackBar()
             ..showSnackBar(SnackBar(
                 content: Text("Kamu telah menekan tombol ${item.name}!")));
+          if (item.name == "Add New Title") {
+            Navigator.push(context,
+                MaterialPageRoute(builder: (context) => const FormPage()));
+          }
         },
         child: Container(
           // Container untuk menyimpan Icon dan Text
@@ -114,9 +123,9 @@ class ShopCard extends StatelessWidget {
                 ),
                 const Padding(padding: EdgeInsets.all(3)),
                 Text(
-                  item.name,
-                  textAlign: TextAlign.center,
-                  style: const TextStyle(color: Color(0xFFEEEEEE), fontSize: 16, fontFamily: 'Segoe UI')
+                    item.name,
+                    textAlign: TextAlign.center,
+                    style: const TextStyle(color: Color(0xFFEEEEEE), fontSize: 16, fontFamily: 'Segoe UI')
                 ),
               ],
             ),
@@ -126,4 +135,3 @@ class ShopCard extends StatelessWidget {
     );
   }
 }
-

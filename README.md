@@ -1,6 +1,7 @@
 # PBP A - Vinka Alrezky As (2206820200)
 
 - [Assignment 7](#assignment-7)
+- [Assignment 8](#assignment-8)
 
 
 # Assignment 7
@@ -40,7 +41,7 @@ Berikut ringkasan fungsional dari widget-widget yang saya gunakan:
 Setiap widget di atas berperan dalam menyusun tampilan dan interaksi dalam aplikasi.
 
 
-### Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step.
+### Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step!
 1. Pertama, memulai dengan membuat proyek Flutter baru dengan nama `literalink` menggunakan perintah:
     ```
     flutter create literalink
@@ -73,4 +74,17 @@ Setiap widget di atas berperan dalam menyusun tampilan dan interaksi dalam aplik
 7. Membuat `ShopCard` sebagai widget `StatelessWidget` baru untuk menampilkan setiap card.
 8. Mengatur setiap tombol pada `ShopCard` untuk menampilkan `SnackBar` dengan pesan khusus setelah ditekan, kurang lebih sama dengan tutorial.
 9. Mengatur style seperti warna dan font yang sesuai, saya juga menggunakan icon yang sesuai dengan tema aplikasi.
+
+
+# Assignment 8
+
+### Jelaskan perbedaan antara Navigator.push() dan Navigator.pushReplacement(), disertai dengan contoh mengenai penggunaan kedua metode tersebut yang tepat!
+
+### Jelaskan masing-masing layout widget pada Flutter dan konteks penggunaannya masing-masing!
+
+### Sebutkan apa saja elemen input pada form yang kamu pakai pada tugas kali ini dan jelaskan mengapa kamu menggunakan elemen input tersebut!
+
+### Bagaimana penerapan clean architecture pada aplikasi Flutter?
+
+### Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step! 
 
