@@ -78,13 +78,132 @@ Setiap widget di atas berperan dalam menyusun tampilan dan interaksi dalam aplik
 
 # Assignment 8
 
-### Jelaskan perbedaan antara Navigator.push() dan Navigator.pushReplacement(), disertai dengan contoh mengenai penggunaan kedua metode tersebut yang tepat!
+### Perbedaan antara Navigator.push() dan Navigator.pushReplacement()
+Dalam Flutter, Navigator.push() dan Navigator.pushReplacement() adalah dua metode yang digunakan untuk navigasi antara halaman, tetapi mereka berbeda dalam cara mereka mengelola tumpukan halaman.
+1. `Navigator.push()`
+   - Fungsi: Metode ini menambahkan halaman baru ke atas tumpukan navigator tanpa menghapus halaman sebelumnya. Ini berarti halaman baru ditumpuk di atas halaman saat ini.
+   - Efek: Saat pengguna menekan tombol kembali, aplikasi akan kembali ke halaman sebelumnya dalam tumpukan.
+   - Contoh Penggunaan: Dalam aplikasi e-commerce, ketika pengguna memilih produk untuk melihat detailnya, `Navigator.push()` dapat digunakan untuk menampilkan halaman detail produk. Ini memungkinkan pengguna untuk kembali ke daftar produk dengan menekan tombol kembali.
+   ```
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => DetailPage()),
+    );
+   ```
+2. `Navigator.pushReplacement()`
+   - Fungsi: Metode ini menggantikan halaman saat ini dengan halaman baru dalam tumpukan navigator. Halaman saat ini dihapus dan tidak dapat diakses lagi setelah penggantian.
+   - Efek: Saat pengguna menekan tombol kembali, mereka tidak akan kembali ke halaman yang digantikan karena telah dihapus dari tumpukan.
+   - Contoh Penggunaan: Dalam alur navigasi seperti dari halaman login ke dashboard, `Navigator.pushReplacement()` digunakan. Setelah pengguna berhasil masuk, halaman login digantikan oleh dashboard sehingga pengguna tidak dapat kembali ke halaman login.
+   ```
+   Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(builder: (context) => DashboardPage()),
+   );
+   ```
 
-### Jelaskan masing-masing layout widget pada Flutter dan konteks penggunaannya masing-masing!
+### Layout Widget pada Flutter dan Konteks Penggunaannya
+Flutter menyediakan berbagai widget layout yang memudahkan pengaturan tampilan UI. Berikut adalah beberapa layout widget utama dan konteks penggunaannya:
+1. `Container`
+   - Deskripsi: Widget serbaguna yang dapat digunakan untuk membuat kotak dekoratif dengan warna latar belakang, border, dan margin.
+   - Konteks Penggunaan: Cocok untuk membuat elemen desain seperti kotak dengan padding, margin, border, atau background color.
+2. `Row` dan `Column`
+   - Deskripsi: `Row` mengatur child widget-nya secara horizontal. `Column` mengatur child widget-nya secara vertikal.
+   - Konteks Penggunaan: Ideal untuk membuat layout linier baik secara horizontal (`Row`) maupun vertikal (`Column`).
+3. `Stack`
+   - Deskripsi: Memungkinkan widget diletakkan di atas satu sama lain.
+   - Konteks Penggunaan: Berguna untuk menumpuk elemen, seperti teks di atas gambar.
+4. `GridView`
+   - Deskripsi: Menampilkan widget dalam bentuk grid atau matriks.
+   - Konteks Penggunaan: Cocok untuk menampilkan data dalam format grid, seperti galeri foto.
+5. `ListView`
+   - Deskripsi: Menampilkan daftar widget yang dapat discroll.
+   - Konteks Penggunaan: Ideal untuk membuat daftar item yang dapat discroll, seperti daftar email atau feed berita.
+6. `Expanded` dan `Flexible`
+   - Deskripsi: `Expanded` mengatur child widget untuk mengisi ruang yang tersedia. `Flexible` memberikan kontrol lebih lanjut terhadap pembagian ruang yang tersedia.
+   - Konteks Penggunaan: Digunakan dalam Row atau Column untuk mengontrol bagaimana child widget membagi ruang yang tersedia.
+7. `Padding`
+   - Deskripsi: Menambahkan padding di sekitar child widget.
+   - Konteks Penggunaan: Berguna untuk memberikan ruang di sekitar elemen UI.
+8. `Align` dan `Center`
+   - Deskripsi: `Align` mengatur posisi child widget di dalam dirinya. `Center` adalah kasus khusus dari `Align` yang menengahkan child widget.
+   - Konteks Penggunaan: Berguna untuk mengatur posisi widget di dalam container.
 
-### Sebutkan apa saja elemen input pada form yang kamu pakai pada tugas kali ini dan jelaskan mengapa kamu menggunakan elemen input tersebut!
+### Elemen input pada form Flutter 
+Berikut adalah jenis elemen input yang digunakan dalam form Flutter program ini:
+1. `TextFormField`:
+   - Penggunaan:
+      - Nama (Name): Untuk memasukkan nama item.
+      - Jumlah (Amount): Untuk memasukkan kuantitas item dalam bentuk angka.
+      - Deskripsi (Description): Untuk memasukkan deskripsi lebih lanjut tentang item.
+   - Alasan: `TextFormField` memberikan fleksibilitas dalam memasukkan teks bebas, baik untuk data teks singkat (seperti nama) maupun teks panjang (seperti deskripsi). Dalam kasus jumlah, meskipun inputnya berupa angka, TextFormField memungkinkan validasi input sebelum konversi ke tipe data numerik.
+2. `DropdownButtonFormField`:
+   - Penggunaan: Untuk memilih kategori item dari daftar opsi yang telah ditentukan.
+   - Alasan: `DropdownButtonFormField` ideal untuk input dengan pilihan yang tetap, seperti kategori. Ini meminimalkan kesalahan input dari pengguna dan memudahkan validasi data, serta memastikan konsistensi pilihan kategori.
 
-### Bagaimana penerapan clean architecture pada aplikasi Flutter?
+### Penerapan Clean Architecture pada Aplikasi Flutter
+Penerapan Clean Architecture dalam aplikasi Flutter melibatkan pemisahan kode menjadi beberapa lapisan dengan tanggung jawab yang jelas. Ini membantu dalam memastikan bahwa aplikasi mudah dipelihara, diuji, dan diperluas.  Clean architecture membagi project ke dalam 3 lapisan yaitu:
+1. Lapisan Data & Platform: Lapisan terluar yang berisi kode sumber data (seperti Rest API, local database, Firebase) dan kode platform untuk membangun UI aplikasi (widgets).
+2. Lapisan Presentation: Terdiri dari kode yang menghubungkan data dengan UI, termasuk kode untuk state management (seperti provider, controller, BLoC).
+3. Lapisan Domain: Lapisan terdalam, berisi business-logic aplikasi, termasuk entitas dan use cases.
 
-### Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step! 
-
+### Implementasi step-by-step
+1. Menambahkan Drawer Menu Untuk Navigasi. Disini saya membuat file baru di dalam direktori baru widgets dengan nama `left_drawer.dart`. Drawer memiliki dua opsi yaitu `Homepage` dan `Add New Title`.
+   ````
+   ListTile(
+      leading: const Icon(Icons.home_outlined),
+      title: const Text('Homepage'),
+      onTap: () {
+         Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(
+               builder: (context) => MyHomePage(),
+            ));
+      },
+   ),
+   ListTile(
+      leading: const Icon(Icons.post_add_outlined),
+      title: const Text('Add New Title'),
+      onTap: () {
+        Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => const FormPage()));
+      },
+    ),
+   ```
+2. Menambahkan Form dan Elemen Input. Disini saya membuat file baru di dalam direktori baru screens dengan nama `shoplist_form.dart`. Kemudian saya menambahkan empat elemen input yaitu `name`, `amount`, `category`, dan `description`.
+   Untuk `category` saya menggunakan `DropdownButtonFormField`.
+   ```
+     Padding(
+       padding: const EdgeInsets.all(8.0),
+       child:DropdownButtonFormField<String>(
+         decoration: InputDecoration(
+           labelText: "Category",
+           border: OutlineInputBorder(
+             borderRadius: BorderRadius.circular(5.0),
+           ),
+         ),
+         value: _category.isNotEmpty ? _category : null, // Penanganan untuk string kosong
+         onChanged: (String? newValue) {
+           setState(() {
+             _category = newValue ?? '';
+           });
+         },
+         validator: (String? value) {
+           if (value == null || value.isEmpty) {
+             return "Category cannot be empty!";
+           }
+           return null;
+         },
+         items: categories.map<DropdownMenuItem<String>>((String value) {
+           return DropdownMenuItem<String>(
+             value: value,
+             child: Text(value),
+           );
+         }).toList(),
+       ),
+     ),
+   ```
+   Setiap elemen input di formulir divalidasi. Saya juga menambahkan tombol save.
+3. Membuat pop-up yang berisi data sesuai isi dari formulir setelah menekan tombol Save pada halaman formulir tambah item baru. Kurang lebih sama pada tutorial.
+4. Mengarahkan pengguna ke halaman form tambah item baru ketika menekan tombol `Add New Title` pada halaman utama. Saya menambahkan Fitur Navigasi pada Tombol.
+5. Terakhir, saya me-refactoring file dan memindahkan `menu.dart` ke direktori screens.

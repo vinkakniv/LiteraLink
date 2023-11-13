@@ -14,6 +14,7 @@ class _FormPageState extends State<FormPage> {
   String _description = "";
   int _amount = 0;
   String _category = "";
+  List<String> categories = ["Novel", "Comic", "Poetry", "History", "Short Stories"];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -36,8 +37,8 @@ class _FormPageState extends State<FormPage> {
                 padding: const EdgeInsets.all(8.0),
                 child: TextFormField(
                   decoration: InputDecoration(
-                    hintText: "Name",
-                    labelText: "Name",
+                    hintText: "Title",
+                    labelText: "Title",
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(5.0),
                     ),
@@ -49,7 +50,7 @@ class _FormPageState extends State<FormPage> {
                   },
                   validator: (String? value) {
                     if (value == null || value.isEmpty) {
-                      return "Name cannot be empty!";
+                      return "Title cannot be empty!";
                     }
                     return null;
                   },
@@ -80,6 +81,35 @@ class _FormPageState extends State<FormPage> {
               ),
               Padding(
                 padding: const EdgeInsets.all(8.0),
+                child:DropdownButtonFormField<String>(
+                  decoration: InputDecoration(
+                    labelText: "Category",
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(5.0),
+                    ),
+                  ),
+                  value: _category.isNotEmpty ? _category : null, // Penanganan untuk string kosong
+                  onChanged: (String? newValue) {
+                    setState(() {
+                      _category = newValue ?? '';
+                    });
+                  },
+                  validator: (String? value) {
+                    if (value == null || value.isEmpty) {
+                      return "Category cannot be empty!";
+                    }
+                    return null;
+                  },
+                  items: categories.map<DropdownMenuItem<String>>((String value) {
+                    return DropdownMenuItem<String>(
+                      value: value,
+                      child: Text(value),
+                    );
+                  }).toList(),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
                 child: TextFormField(
                   decoration: InputDecoration(
                     hintText: "Description",
@@ -96,29 +126,6 @@ class _FormPageState extends State<FormPage> {
                   validator: (String? value) {
                     if (value == null || value.isEmpty) {
                       return "Description cannot be empty!";
-                    }
-                    return null;
-                  },
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: TextFormField(
-                  decoration: InputDecoration(
-                    hintText: "Category",
-                    labelText: "Category",
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(5.0),
-                    ),
-                  ),
-                  onChanged: (String? value) {
-                    setState(() {
-                      _category = value!;
-                    });
-                  },
-                  validator: (String? value) {
-                    if (value == null || value.isEmpty) {
-                      return "Category cannot be empty!";
                     }
                     return null;
                   },
@@ -147,8 +154,8 @@ class _FormPageState extends State<FormPage> {
                                   children: [
                                     Text('Name: $_name'),
                                     Text('Amount: $_amount'),
-                                    Text('Description: $_description'),
                                     Text('Category: $_category'),
+                                    Text('Description: $_description'),
                                   ],
                                 ),
                               ),
