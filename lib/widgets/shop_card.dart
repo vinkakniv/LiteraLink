@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:literalink/screens/shoplist_form.dart';
-import 'package:literalink/widgets/left_drawer.dart';
+import 'package:pbp_django_auth/pbp_django_auth.dart';
+import 'package:provider/provider.dart';
+import 'package:literalink/screens/login.dart';
+import 'package:literalink/screens/list_item.dart';
 
 class ShopItem {
   final String name;
@@ -10,83 +13,6 @@ class ShopItem {
   ShopItem(this.name, this.icon, this.color);
 }
 
-
-class MyHomePage extends StatelessWidget {
-  MyHomePage({Key? key}) : super(key: key);
-
-  final List<ShopItem> items = [
-    ShopItem("View Bookshelf", Icons.view_list_outlined, const Color(0xFFE57373)),
-    ShopItem("Add New Title", Icons.post_add_outlined, const Color(0xFFFf7043)),
-    ShopItem("Logout", Icons.logout, const Color(0xFFE53935)),
-  ];
-
-
-  // This widget is the home page of your application. It is stateful, meaning
-  // that it has a State object (defined below) that contains fields that affect
-  // how it looks.
-
-  // This class is the configuration for the state. It holds the values (in this
-  // case the title) provided by the parent (in this case the App widget) and
-  // used by the build method of the State. Fields in a Widget subclass are
-  // always marked "final".
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: const Color(0xFF3E2723),
-        title: const Text(
-          '📌Archive of MY Own',
-          style: TextStyle(
-              fontStyle: FontStyle.italic, // Set the fontStyle here
-              color:  Color(0xFFEEEEEE),
-              fontFamily: 'Segoe UI'
-          ),
-        ),
-      ),
-      drawer: const LeftDrawer(),
-      body: SingleChildScrollView(
-        // Widget wrapper yang dapat discroll
-        child: Padding(
-          padding: const EdgeInsets.all(10.0), // Set padding dari halaman
-          child: Column(
-            // Widget untuk menampilkan children secara vertikal
-            children: <Widget>[
-              const Padding(
-                padding: EdgeInsets.only(top: 10.0, bottom: 10.0),
-                // Widget Text untuk menampilkan tulisan dengan alignment center dan style yang sesuai
-                child: Text(
-                  'LiteraLink🔖', // Text yang menandakan toko
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                      fontSize: 35,
-                      fontWeight: FontWeight.bold,
-                      color: Color(0xFFB71C1C),
-                      fontFamily: 'Segoe UI'
-                  ),
-                ),
-              ),
-              // Grid layout
-              GridView.count(
-                // Container pada card.
-                primary: true,
-                padding: const EdgeInsets.all(20),
-                crossAxisSpacing: 10,
-                mainAxisSpacing: 10,
-                crossAxisCount: 3,
-                shrinkWrap: true,
-                children: items.map((ShopItem item) {
-                  // Iterasi untuk setiap item
-                  return ShopCard(item);
-                }).toList(),
-              ),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-}
-
 class ShopCard extends StatelessWidget {
   final ShopItem item;
 
@@ -94,19 +20,43 @@ class ShopCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final request = context.watch<CookieRequest>();
     return Material(
       color: item.color,
       child: InkWell(
         // Area responsive terhadap sentuhan
-        onTap: () {
+        onTap: () async {
           // Memunculkan SnackBar ketika diklik
           ScaffoldMessenger.of(context)
             ..hideCurrentSnackBar()
             ..showSnackBar(SnackBar(
                 content: Text("Kamu telah menekan tombol ${item.name}!")));
-          if (item.name == "Add New Title") {
+          if (item.name == "Add New Item") {
             Navigator.push(context,
                 MaterialPageRoute(builder: (context) => const FormPage()));
+          }
+          else if (item.name == "View Receipt") {
+            Navigator.push(context,
+                MaterialPageRoute(builder: (context) => const ItemPage()));
+          }
+          else if (item.name == "Logout") {
+            final response = await request.logout(
+                "http://127.0.0.1:8000/auth/logout/");
+            String message = response["message"];
+            if (response['status']) {
+              String uname = response["username"];
+              ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                content: Text("$message Sampai jumpa, $uname."),
+              ));
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(builder: (context) => const LoginPage()),
+              );
+            } else {
+              ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                content: Text("$message"),
+              ));
+            }
           }
         },
         child: Container(
@@ -127,11 +77,11 @@ class ShopCard extends StatelessWidget {
                     textAlign: TextAlign.center,
                     style: const TextStyle(color: Color(0xFFEEEEEE), fontSize: 16, fontFamily: 'Segoe UI')
                 ),
-              ],
+               ],
+              ),
             ),
           ),
         ),
-      ),
-    );
+      );
+    }
   }
-}

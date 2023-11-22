@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:literalink/screens/menu.dart';
 import 'package:literalink/screens/shoplist_form.dart';
+import 'package:literalink/screens/list_item.dart';
+
 
 class LeftDrawer extends StatelessWidget {
   const LeftDrawer({super.key});
@@ -26,7 +28,7 @@ class LeftDrawer extends StatelessWidget {
                   ),
                 ),
                 Padding(padding: EdgeInsets.all(10)),
-                Text("Add New Book: Quick & Easy Entry!",
+                Text("Add New Item: Quick & Easy Entry!",
                   style: TextStyle(
                     color:  Colors.white60,
                   ),
@@ -48,11 +50,22 @@ class LeftDrawer extends StatelessWidget {
           ),
           ListTile(
             leading: const Icon(Icons.post_add_outlined),
-            title: const Text('Add New Title'),
+            title: const Text('Add New Item'),
             // Bagian redirection ke ShopFormPage
             onTap: () {
               Navigator.push(context,
                   MaterialPageRoute(builder: (context) => const FormPage()));
+            },
+          ),
+          ListTile(
+            leading: const Icon(Icons.shopping_basket),
+            title: const Text('Daftar Item'),
+            onTap: () {
+              // Route menu ke halaman item
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const ItemPage()),
+              );
             },
           ),
         ],

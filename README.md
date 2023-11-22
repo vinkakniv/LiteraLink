@@ -135,6 +135,7 @@ Berikut adalah jenis elemen input yang digunakan dalam form Flutter program ini:
       - Nama (Name): Untuk memasukkan nama item.
       - Jumlah (Amount): Untuk memasukkan kuantitas item dalam bentuk angka.
       - Deskripsi (Description): Untuk memasukkan deskripsi lebih lanjut tentang item.
+      - Harga (Price) : Untuk memasukkan harga dari suatu item
    - Alasan: `TextFormField` memberikan fleksibilitas dalam memasukkan teks bebas, baik untuk data teks singkat (seperti nama) maupun teks panjang (seperti deskripsi). Dalam kasus jumlah, meskipun inputnya berupa angka, TextFormField memungkinkan validasi input sebelum konversi ke tipe data numerik.
 2. `DropdownButtonFormField`:
    - Penggunaan: Untuk memilih kategori item dari daftar opsi yang telah ditentukan.
@@ -207,3 +208,35 @@ Penerapan Clean Architecture dalam aplikasi Flutter melibatkan pemisahan kode me
 3. Membuat pop-up yang berisi data sesuai isi dari formulir setelah menekan tombol Save pada halaman formulir tambah item baru. Kurang lebih sama pada tutorial.
 4. Mengarahkan pengguna ke halaman form tambah item baru ketika menekan tombol `Add New Title` pada halaman utama. Saya menambahkan Fitur Navigasi pada Tombol.
 5. Terakhir, saya me-refactoring file dan memindahkan `menu.dart` ke direktori screens.
+
+
+# Assignment 8
+
+### Apakah bisa kita melakukan pengambilan data JSON tanpa membuat model terlebih dahulu? Jika iya, apakah hal tersebut lebih baik daripada membuat model sebelum melakukan pengambilan data JSON?
+Ya, kita dapat melakukan pengambilan data JSON tanpa membuat model terlebih dahulu. Dibandingkan dengan pendekatan di mana model didefinisikan terlebih dahulu, pengambilan data JSON tanpa model mungkin kurang ideal dalam situasi di mana struktur data sudah diketahui dan stabil. Dalam kasus seperti itu, mendefinisikan model terlebih dahulu dapat memberikan validasi, organisasi, dan dokumentasi yang lebih baik untuk data, memudahkan pemeliharaan dan pengembangan kode dalam jangka panjang.
+
+### Jelaskan fungsi dari CookieRequest dan jelaskan mengapa instance CookieRequest perlu untuk dibagikan ke semua komponen di aplikasi Flutter.
+`CookieRequest` dalam aplikasi Flutter berfungsi untuk mengelola cookie pada permintaan HTTP, seperti mengatur, mengirim, dan menerima cookie yang berkaitan dengan sesi pengguna dan otentikasi. Penting untuk membagikan instance `CookieRequest` ke semua komponen di aplikasi untuk memastikan konsistensi dan efisiensi dalam pengelolaan sesi pengguna dan state aplikasi secara keseluruhan. Ini membantu dalam menjaga pengalaman pengguna yang seragam di seluruh aplikasi dan memudahkan dalam pemeliharaan dan modifikasi terkait pengelolaan cookie.
+
+### Jelaskan mekanisme pengambilan data dari JSON hingga dapat ditampilkan pada Flutter.
+Awalnya, aplikasi melakukan permintaan data JSON, yang bisa berasal dari API atau file lokal, menggunakan paket seperti `http` untuk permintaan HTTP. Setelah data diterima, langkah berikutnya adalah parsing data JSON tersebut menggunakan dart:convert untuk mengubahnya menjadi struktur data Dart, seperti Map atau List. Meskipun tidak wajib, seringkali data ini dikonversi ke dalam model data khusus, yaitu kelas Dart yang merepresentasikan struktur data tersebut, memudahkan manipulasi dan penggunaan data. Selanjutnya, manajemen state aplikasi dilakukan, yang bisa menggunakan metode seperti `setState`, `Provider`, atau `Bloc`. Data yang telah diolah ini kemudian ditampilkan dalam UI menggunakan berbagai widget Flutter seperti `Text` atau `ListView`. 
+
+### Jelaskan mekanisme autentikasi dari input data akun pada Flutter ke Django hingga selesainya proses autentikasi oleh Django dan tampilnya menu pada Flutter.
+Proses autentikasi dimulai ketika pengguna memasukkan data akun mereka (seperti username dan password) melalui form di Flutter App. Setelah data ini dikumpulkan, Flutter mengirimkannya ke server Django melalui permintaan HTTP POST. Server Django, setelah menerima data ini, memproses autentikasi dengan membandingkan kredensial yang diberikan dengan yang ada di database. Setelah verifikasi, Django mengirimkan respons kembali ke aplikasi Flutter, yang berisi hasil autentikasi. Flutter kemudian mengolah respons ini; jika autentikasi berhasil, aplikasi menyimpan token untuk sesi pengguna dan beralih ke tampilan menu atau halaman selanjutnya, sesuai dengan hak akses pengguna.
+
+### Sebutkan seluruh widget yang kamu pakai pada tugas ini dan jelaskan fungsinya masing-masing.
+Berikut adalah beberapa widget yang saya gunakan:
+- Scaffold: Struktur dasar visual, memberikan kerangka untuk halaman.
+- AppBar: Bilah aplikasi di atas layar, menampilkan judul dan tombol navigasi.
+- Text: Menampilkan teks seperti nama dan deskripsi item.
+- Padding: Memberikan ruang sekitar elemen, digunakan untuk memberi jarak pada konten.
+- Column: Menyusun widget secara vertikal, digunakan untuk tata letak teks dan elemen lainnya.
+- FutureBuilder: Mengelola data asinkron, seperti mengambil data dari API.
+- Center: Memusatkan widget (seperti loader atau pesan) di tengah layar.
+- CircularProgressIndicator: Menampilkan animasi loading saat data sedang dimuat.
+- ListView.builder: Membuat daftar item yang dapat digulir, mengoptimalkan memori.
+- Container: Wadah umum untuk setiap item, bisa diatur margin dan padding.
+- InkWell: Membuat teks atau elemen lainnya bisa diklik, digunakan untuk navigasi.
+- 
+## Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step!
+

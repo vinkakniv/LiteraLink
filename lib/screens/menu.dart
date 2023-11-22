@@ -1,21 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:literalink/widgets/left_drawer.dart';
 import 'package:literalink/screens/shoplist_form.dart';
-
-class ShopItem {
-  final String name;
-  final IconData icon;
-  final Color color;
-
-  ShopItem(this.name, this.icon, this.color);
-}
+import 'package:literalink/widgets/shop_card.dart';
 
 class MyHomePage extends StatelessWidget {
   MyHomePage({Key? key}) : super(key: key);
 
   final List<ShopItem> items = [
-    ShopItem("View Bookshelf", Icons.view_list_outlined, const Color(0xFFE57373)),
-    ShopItem("Add New Title", Icons.post_add_outlined, const Color(0xFFFf7043)),
+    ShopItem("View Receipt", Icons.receipt_long_outlined, const Color(0xFFE57373)),
+    ShopItem("Add New Item", Icons.add_shopping_cart_rounded, const Color(0xFFFf7043)),
     ShopItem("Logout", Icons.logout, const Color(0xFFE53935)),
   ];
 
@@ -33,7 +26,7 @@ class MyHomePage extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: const Color(0xFF3E2723),
         title: const Text(
-          '📌Archive of MY Own',
+          'Literally Sip & Munch🍬🧃🥡',
           style: TextStyle(
             fontStyle: FontStyle.italic, // Set the fontStyle here
             color:  Color(0xFFEEEEEE),
@@ -85,52 +78,5 @@ class MyHomePage extends StatelessWidget {
   }
 }
 
-class ShopCard extends StatelessWidget {
-  final ShopItem item;
 
-  const ShopCard(this.item, {super.key}); // Constructor
-
-  @override
-  Widget build(BuildContext context) {
-    return Material(
-      color: item.color,
-      child: InkWell(
-        // Area responsive terhadap sentuhan
-        onTap: () {
-          // Memunculkan SnackBar ketika diklik
-          ScaffoldMessenger.of(context)
-            ..hideCurrentSnackBar()
-            ..showSnackBar(SnackBar(
-                content: Text("Kamu telah menekan tombol ${item.name}!")));
-          if (item.name == "Add New Title") {
-            Navigator.push(context,
-                MaterialPageRoute(builder: (context) => const FormPage()));
-          }
-        },
-        child: Container(
-          // Container untuk menyimpan Icon dan Text
-          padding: const EdgeInsets.all(8),
-          child: Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Icon(
-                  item.icon,
-                  color: const Color(0xFFEEEEEE),
-                  size: 30.0,
-                ),
-                const Padding(padding: EdgeInsets.all(3)),
-                Text(
-                  item.name,
-                  textAlign: TextAlign.center,
-                  style: const TextStyle(color: Color(0xFFEEEEEE), fontSize: 16, fontFamily: 'Segoe UI')
-                ),
-              ],
-            ),
-          ),
-        ),
-      ),
-    );
-  }
-}
 
