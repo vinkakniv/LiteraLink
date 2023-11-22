@@ -2,7 +2,7 @@
 
 - [Assignment 7](#assignment-7)
 - [Assignment 8](#assignment-8)
-
+- [Assignment 9](#assignment-9)
 
 # Assignment 7
 
@@ -210,7 +210,7 @@ Penerapan Clean Architecture dalam aplikasi Flutter melibatkan pemisahan kode me
 5. Terakhir, saya me-refactoring file dan memindahkan `menu.dart` ke direktori screens.
 
 
-# Assignment 8
+# Assignment 9
 
 ### Apakah bisa kita melakukan pengambilan data JSON tanpa membuat model terlebih dahulu? Jika iya, apakah hal tersebut lebih baik daripada membuat model sebelum melakukan pengambilan data JSON?
 Ya, kita dapat melakukan pengambilan data JSON tanpa membuat model terlebih dahulu. Dibandingkan dengan pendekatan di mana model didefinisikan terlebih dahulu, pengambilan data JSON tanpa model mungkin kurang ideal dalam situasi di mana struktur data sudah diketahui dan stabil. Dalam kasus seperti itu, mendefinisikan model terlebih dahulu dapat memberikan validasi, organisasi, dan dokumentasi yang lebih baik untuk data, memudahkan pemeliharaan dan pengembangan kode dalam jangka panjang.
@@ -239,17 +239,22 @@ Berikut adalah beberapa widget yang saya gunakan:
 - `InkWell`: Membuat teks atau elemen lainnya bisa diklik, digunakan untuk navigasi.
 
 ## Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step!
-1.Pengaturan Otentikasi pada Django:
-Langkah awal adalah menyeting otentikasi pada aplikasi Django. Ini termasuk pembuatan aplikasi otentikasi dengan django-admin startapp authentication dan penyesuaian settings.py.
-Sebagai tambahan, saya mengintegrasikan `django-cors-headers` untuk memudahkan komunikasi lintas domain dan menyiapkan views khusus untuk proses login.
+
+1. Pengaturan Otentikasi pada Django: 
+Langkah awal adalah menyeting otentikasi pada aplikasi Django. Ini termasuk pembuatan aplikasi otentikasi dengan `django-admin startapp authentication` dan penyesuaian `settings.py`. Sebagai tambahan, saya mengintegrasikan `django-cors-headers` untuk memudahkan komunikasi lintas domain dan menyiapkan views khusus untuk proses login.
+
 2. Integrasi Otentikasi dengan Flutter:
 Untuk menyambungkan sistem otentikasi Django ke aplikasi Flutter, saya memanfaatkan package `pbp_django_auth`. Saya mengimplementasikan Provider dengan `CookieRequest` pada widget utama dan membuat `login.dart` yang menangani proses login.
+
 3. Membuat Model Data Sesuai Struktur Django:
 Dengan data JSON yang tersedia dari Django, saya menggunakan Quicktype untuk mengonversi data tersebut menjadi model Dart, yang memudahkan pengelolaan data di Flutter.
+
 4. Menampilkan Daftar Item:
 Saya membuat file `list_item.dart` yang bertujuan untuk menampilkan informasi setiap item seperti nama, jumlah, deskripsi dari semua item. Disini saya menggunakan `InkWell` sehingga ketika nama item di klik maka akan menuju halaman detail item tersebut.
+
 5. Menampilkan Detail Item:
-Saya membuat file `detail_item.dart` yang menampilkan detail dari item yang di klik.
+Saya membuat file `detail_item.dart` yang menampilkan detail dari item yang di klik, seperti kategori dan harga dari item tersebut. 
+
 6. Mengimplementasikan Fitur Logout:
 Terakhir, saya mengatur logout dengan menambahkan fungsi logout di proyek Django dan implementasikan di aplikasi Flutter. 
 
