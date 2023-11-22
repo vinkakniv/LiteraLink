@@ -226,17 +226,31 @@ Proses autentikasi dimulai ketika pengguna memasukkan data akun mereka (seperti 
 
 ### Sebutkan seluruh widget yang kamu pakai pada tugas ini dan jelaskan fungsinya masing-masing.
 Berikut adalah beberapa widget yang saya gunakan:
-- Scaffold: Struktur dasar visual, memberikan kerangka untuk halaman.
-- AppBar: Bilah aplikasi di atas layar, menampilkan judul dan tombol navigasi.
-- Text: Menampilkan teks seperti nama dan deskripsi item.
-- Padding: Memberikan ruang sekitar elemen, digunakan untuk memberi jarak pada konten.
-- Column: Menyusun widget secara vertikal, digunakan untuk tata letak teks dan elemen lainnya.
-- FutureBuilder: Mengelola data asinkron, seperti mengambil data dari API.
-- Center: Memusatkan widget (seperti loader atau pesan) di tengah layar.
-- CircularProgressIndicator: Menampilkan animasi loading saat data sedang dimuat.
-- ListView.builder: Membuat daftar item yang dapat digulir, mengoptimalkan memori.
-- Container: Wadah umum untuk setiap item, bisa diatur margin dan padding.
-- InkWell: Membuat teks atau elemen lainnya bisa diklik, digunakan untuk navigasi.
-- 
-## Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step!
+- `Scaffold`: Struktur dasar visual, memberikan kerangka untuk halaman.
+- `AppBar`: Bilah aplikasi di atas layar, menampilkan judul dan tombol navigasi.
+- `Text`: Menampilkan teks seperti nama dan deskripsi item.
+- `Padding`: Memberikan ruang sekitar elemen, digunakan untuk memberi jarak pada konten.
+- `Column`: Menyusun widget secara vertikal, digunakan untuk tata letak teks dan elemen lainnya.
+- `FutureBuilder`: Mengelola data asinkron, seperti mengambil data dari API.
+- `Center`: Memusatkan widget (seperti loader atau pesan) di tengah layar.
+- `CircularProgressIndicator`: Menampilkan animasi loading saat data sedang dimuat.
+- `ListView.builder`: Membuat daftar item yang dapat digulir, mengoptimalkan memori.
+- `Container`: Wadah umum untuk setiap item, bisa diatur margin dan padding.
+- `InkWell`: Membuat teks atau elemen lainnya bisa diklik, digunakan untuk navigasi.
 
+## Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step!
+1.Pengaturan Otentikasi pada Django:
+Langkah awal adalah menyeting otentikasi pada aplikasi Django. Ini termasuk pembuatan aplikasi otentikasi dengan django-admin startapp authentication dan penyesuaian settings.py.
+Sebagai tambahan, saya mengintegrasikan `django-cors-headers` untuk memudahkan komunikasi lintas domain dan menyiapkan views khusus untuk proses login.
+2. Integrasi Otentikasi dengan Flutter:
+Untuk menyambungkan sistem otentikasi Django ke aplikasi Flutter, saya memanfaatkan package `pbp_django_auth`. Saya mengimplementasikan Provider dengan `CookieRequest` pada widget utama dan membuat `login.dart` yang menangani proses login.
+3. Membuat Model Data Sesuai Struktur Django:
+Dengan data JSON yang tersedia dari Django, saya menggunakan Quicktype untuk mengonversi data tersebut menjadi model Dart, yang memudahkan pengelolaan data di Flutter.
+4. Menampilkan Daftar Item:
+Saya membuat file `list_item.dart` yang bertujuan untuk menampilkan informasi setiap item seperti nama, jumlah, deskripsi dari semua item. Disini saya menggunakan `InkWell` sehingga ketika nama item di klik maka akan menuju halaman detail item tersebut.
+5. Menampilkan Detail Item:
+Saya membuat file `detail_item.dart` yang menampilkan detail dari item yang di klik.
+6. Mengimplementasikan Fitur Logout:
+Terakhir, saya mengatur logout dengan menambahkan fungsi logout di proyek Django dan implementasikan di aplikasi Flutter. 
+
+  
